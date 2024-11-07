@@ -120,6 +120,8 @@ def init_session_vars():
         st.session_state.message = ""
     if "selected_persona" not in st.session_state:
         st.session_state.selected_persona = None
+    if "selected_country" not in st.session_state:
+        st.session_state.selected_country = None
     if "processing" not in st.session_state:
         st.session_state.processing = False
     if "generated_content" not in st.session_state:
@@ -139,6 +141,23 @@ def render_main_page():
     """,
         unsafe_allow_html=True,
     )
+
+    # Step 1: Country selection
+    st.markdown(
+        """
+        <div class="section-title">
+            <h2>🌎 Select Target Country</h2>
+        </div>
+    """,
+        unsafe_allow_html=True,
+    )
+
+    country = st.selectbox(
+        "Choose the country of your target audience:",
+        ["France", "UK", "Spain", "Poland"],
+        key="country",
+    )
+    st.session_state.selected_country = country
 
     st.markdown(
         """
@@ -186,6 +205,8 @@ def render_persona_page():
         unsafe_allow_html=True,
     )
 
+    st.write(f"**Selected Country:** {st.session_state.selected_country}")
+
     personas = get_persona_options()
     cols = st.columns(4)
     for i, persona_key in enumerate(personas):
@@ -224,7 +245,9 @@ def render_persona_page():
                 else:
                     with st.spinner("✨ Crafting your personalized content..."):
                         content = generate_content(
-                            st.session_state.message, st.session_state.selected_persona
+                            st.session_state.message,
+                            st.session_state.selected_persona,
+                            st.session_state.selected_country,
                         )
                         st.session_state.generated_content = content
                         cache_result(cache_key, content)
@@ -322,14 +345,14 @@ def render_results_page():
     st.markdown("</div>", unsafe_allow_html=True)
 
 
-def generate_content(message: str, persona_key: str):
+def generate_content(message: str, persona_key: str, country: str):
     """Generate content using Claude service"""
     try:
         persona_data = get_persona_data(persona_key)
         if not persona_data:
             raise ValueError("Invalid persona selected")
 
-        message_input = MessageInput(content=message, selected_personas=[persona_key])
+        message_input = MessageInput(content=message, selected_personas=[persona_key], country=country)
 
         return claude_service.generate_content(message_input, persona_data)
     except Exception as e:

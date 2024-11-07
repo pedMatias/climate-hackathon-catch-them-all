@@ -49,8 +49,8 @@ class ClaudeService:
             logger.error(f"Error getting Claude response: {e}")
             raise Exception(f"Error getting Claude response: {str(e)}")
 
-    def _build_analysis_prompt(self, message: str, persona: Dict[str, Any]) -> str:
-        return f"""As a climate communications expert, analyze this message and provide guidance:
+    def _build_analysis_prompt(self, message: str, persona: Dict[str, Any], country: str) -> str:
+        return f"""As a climate communications expert, analyze this message and provide guidance in {country}:
 
 Message: {message}
 Target Audience: {persona['name']}
@@ -82,7 +82,7 @@ Important: Ensure the response is a valid JSON object that can be parsed directl
         self, message_input: MessageInput, persona_data: Dict[str, Any]
     ) -> GeneratedContent:
         try:
-            prompt = self._build_analysis_prompt(message_input.content, persona_data)
+            prompt = self._build_analysis_prompt(message_input.content, persona_data, message_input.country)
             response = self._get_response(prompt)
 
             # Attempt to parse the JSON response

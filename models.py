@@ -5,6 +5,7 @@ from datetime import datetime
 class MessageInput(BaseModel):
     content: str = Field(..., min_length=10, max_length=500)
     selected_personas: List[str]
+    country: str = Field(..., description="Target audience's country")
 
 class GeneratedContent(BaseModel):
     tone: str
