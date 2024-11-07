@@ -65,18 +65,20 @@ Please provide a complete analysis including:
 2. Key phrases and keywords that will resonate
 3. Specific feedback on message effectiveness
 4. Types of news stories that would interest this audience
-5. A sample article tailored to this audience
+5. A sample article tailored to this audience in {country}
 
 Respond STRICTLY in the following JSON format:
 {{
     "tone": "description of appropriate tone",
     "keywords": ["list", "of", "keywords"],
     "feedback": "specific feedback on message",
-    "related_news": ["list", "of", "news", "types"],
+    "related_news": [
+        {{"type": "news type", "link": "https://example.com"}}
+    ],
     "article": "complete sample article"
 }}
 
-Important: Ensure the response is a valid JSON object that can be parsed directly."""
+Important: Ensure the response is a valid JSON object that can be parsed directly, and include reputable, general URLs (e.g., main news site or relevant section) for the related news items."""
 
     def generate_content(
         self, message_input: MessageInput, persona_data: Dict[str, Any]

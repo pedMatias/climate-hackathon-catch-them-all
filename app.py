@@ -321,17 +321,20 @@ def render_results_page():
         st.write(content.feedback)
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # Related News
-    st.markdown(
-        """
-        <div class="result-card">
-            <h3>📰 Related News Types</h3>
-    """,
-        unsafe_allow_html=True,
-    )
-    for news in content.related_news:
-        st.markdown(f"- {news}")
-    st.markdown("</div>", unsafe_allow_html=True)
+        # Related News with Links
+        st.markdown(
+            """
+            <div class="result-card">
+                <h3>📰 Related News Sources</h3>
+        """,
+            unsafe_allow_html=True,
+        )
+        for news in content.related_news:
+            if news.link:
+                st.markdown(f"- [{news.type}]({news.link})")  # Display clickable link
+            else:
+                st.markdown(f"- {news.type}")  # Display type without link if no URL provided
+        st.markdown("</div>", unsafe_allow_html=True)
 
     # Article with markdown support
     st.markdown(
