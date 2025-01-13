@@ -14,17 +14,13 @@ APP_SUBTITLE = "Craft targeted climate messages for different audiences"
 
 # Personas Configuration
 AVAILABLE_PERSONAS = {
-    "pt_farmer": {
-        "name": "Portuguese Agricultural Farmer",
-        "description": "Traditional farmers focused on sustainable practices and cost efficiency",
-        "characteristics": [
-            "practical_mindset",
-            "cost_sensitive",
-            "traditional_values",
-        ],
+    "rural_person": {
+        "name": "Rural Person",
+        "description": "Individuals living in rural areas who are closely connected to the land and concerned about the impact of climate change on agriculture and local ecosystems",
+        "characteristics": ["land_stewardship", "resourcefulness", "community_minded"],
         "language_level": "simple",
-        "primary_concerns": ["water_scarcity", "energy_costs", "crop_yields"],
-        "icon": "🌾",
+        "primary_concerns": ["water availability", "crop yields", "soil health", "wildlife impact"],
+        "icon": "🌾"
     },
     "urban_resident": {
         "name": "Urban Resident",
@@ -38,38 +34,6 @@ AVAILABLE_PERSONAS = {
         "primary_concerns": ["air_quality", "recycling", "green_spaces"],
         "icon": "🏢",
     },
-    "business_owner": {
-        "name": "Small Business Owner",
-        "description": "Entrepreneurs looking to balance sustainability with profitability",
-        "characteristics": [
-            "profit_oriented",
-            "efficiency_focused",
-            "community_minded",
-        ],
-        "language_level": "professional",
-        "primary_concerns": ["energy_efficiency", "waste_reduction", "cost_savings"],
-        "icon": "💼",
-    },
-    "student": {
-        "name": "University Student",
-        "description": "Young adults passionate about climate action and social change",
-        "characteristics": ["idealistic", "tech_native", "socially_conscious"],
-        "language_level": "academic",
-        "primary_concerns": ["future_impact", "sustainable_living", "social_justice"],
-        "icon": "📚",
-    },
-    "parent": {
-        "name": "Parent",
-        "description": "Parents concerned about their children's environmental future",
-        "characteristics": ["family_oriented", "safety_conscious", "long_term_planner"],
-        "language_level": "simple",
-        "primary_concerns": [
-            "health_impacts",
-            "future_generations",
-            "clean_environment",
-        ],
-        "icon": "👨‍👩‍👧‍👦",
-    },
     "senior": {
         "name": "Senior Citizen",
         "description": "Experienced individuals with traditional values and environmental concerns",
@@ -78,22 +42,46 @@ AVAILABLE_PERSONAS = {
         "primary_concerns": ["health", "cost_of_living", "community_impact"],
         "icon": "👴",
     },
-    "tech_professional": {
-        "name": "Tech Professional",
-        "description": "Technology workers interested in innovative climate solutions",
-        "characteristics": ["innovation_focused", "data_driven", "solution_oriented"],
-        "language_level": "technical",
-        "primary_concerns": ["technological_solutions", "data_analysis", "efficiency"],
-        "icon": "💻",
+    "youth": {
+        "name": "Youth",
+        "description": "Young individuals who are passionate about climate action, social change, and the future of the planet",
+        "characteristics": ["idealistic", "tech-savvy", "socially_active"],
+        "language_level": "informal",
+        "primary_concerns": ["future impact", "social justice", "sustainable living"],
+        "icon": "🌍"
     },
-    "educator": {
-        "name": "Educator",
-        "description": "Teachers and professors who want to communicate climate issues effectively",
+    "educated_person": {
+        "name": "Educated person",
+        "description": "People with master's degree or PhD who want to communicate climate issues effectively",
         "characteristics": ["knowledge_sharing", "analytical", "community_impact"],
         "language_level": "academic",
         "primary_concerns": ["education", "research", "public_awareness"],
-        "icon": "👩‍🏫",
+        "icon": "🏛️",
     },
+    "no_degree_person": {
+        "name": "No Degree Person",
+        "description": "Individuals with practical experience who are interested in straightforward climate information",
+        "characteristics": ["practical_mindset", "hands-on", "community_oriented"],
+        "language_level": "simple",
+        "primary_concerns": ["local environmental impact", "job security", "cost of living"],
+        "icon": "🛠️"
+    },
+    "high_income_person": {
+        "name": "High Income Person",
+        "description": "Professionals and individuals with high disposable income who prioritize sustainable luxury and innovative climate solutions",
+        "characteristics": ["innovation_focused", "environmentally_conscious", "future_oriented"],
+        "language_level": "professional",
+        "primary_concerns": ["sustainable investments", "green technology", "luxury eco-friendly products"],
+        "icon": "💼"
+    },
+    "low_income_person": {
+        "name": "Low Income Person",
+        "description": "Individuals with limited disposable income who are concerned about the affordability and direct impact of climate change on daily life",
+        "characteristics": ["cost_sensitive", "community_oriented", "practical_mindset"],
+        "language_level": "simple",
+        "primary_concerns": ["energy costs", "health impacts", "local environmental issues"],
+        "icon": "🏠"
+    }
 }
 
 # Cache Configuration

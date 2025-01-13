@@ -1,16 +1,21 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 from typing import List, Optional
 from datetime import datetime
 
 class MessageInput(BaseModel):
     content: str = Field(..., min_length=10, max_length=500)
     selected_personas: List[str]
+    country: str = Field(..., description="Target audience's country")
+
+class RelatedNewsItem(BaseModel):
+    type: str
+    link: Optional[HttpUrl] = None
 
 class GeneratedContent(BaseModel):
     tone: str
     keywords: List[str]
     feedback: str
-    related_news: List[str]
+    related_news: List[RelatedNewsItem]
     article: str
     generated_at: datetime = Field(default_factory=datetime.now)
 
